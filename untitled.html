@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IQ//LOGIC — Muhammad Haykal</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(0,246,255,.10), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(156,92,255,.12), transparent 30%),
+        #070a12;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* GRID BACKGROUND */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+.container {
+    width: 92%;
+    max-width: 900px;
+    margin: auto;
+    padding: 25px 0 40px;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 20px 0 30px;
+}
+
+.logo {
+    font-size: 1rem;
+    letter-spacing: 5px;
+    color: #00f6ff;
+    font-weight: bold;
+}
+
+header h1 {
+    font-size: clamp(2.2rem, 8vw, 4.5rem);
+    letter-spacing: 5px;
+    margin: 10px 0;
+    background: linear-gradient(
+        90deg,
+        #fff,
+        #00f6ff,
+        #9c5cff,
+        #fff
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: #7d899d;
+    letter-spacing: 3px;
+    font-size: .75rem;
+}
+
+/* CARD */
+.card {
+    background: rgba(12,17,29,.88);
+    border: 1px solid rgba(0,246,255,.15);
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow:
+        0 0 40px rgba(0,246,255,.06),
+        inset 0 0 30px rgba(255,255,255,.015);
+}
+
+/* START SCREEN */
+.start-screen {
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: 1px solid rgba(0,246,255,.25);
+    color: #00f6ff;
+    font-size: .7rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.start-screen h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.description {
+    color: #8994a8;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: auto;
+}
+
+.rules {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.rule {
+    padding: 12px 18px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 12px;
+    font-size: .75rem;
+    color: #aeb8c9;
+}
+
+/* BUTTON */
+button {
+    font-family: inherit;
+}
+
+.main-btn {
+    border: none;
+    padding: 15px 35px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #00cfe0, #8d52ff);
+    color: white;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: .2s;
+    box-shadow: 0 0 25px rgba(0,246,255,.18);
+}
+
+.main-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 35px rgba(0,246,255,.3);
+}
+
+/* GAME */
+.game-screen {
+    display: none;
+}
+
+.top-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.info-box {
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+}
+
+.info-label {
+    color: #667085;
+    font-size: .6rem;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.info-value {
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+/* PROGRESS */
+.progress-container {
+    margin-bottom: 25px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    color: #778296;
+    font-size: .7rem;
+    margin-bottom: 7px;
+}
+
+.progress {
+    height: 7px;
+    background: #151b28;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 5%;
+    background: linear-gradient(90deg, #00f6ff, #9c5cff);
+    transition: width .4s;
+}
+
+/* TIMER */
+.timer {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    border: 4px solid #00f6ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 25px rgba(0,246,255,.15);
+}
+
+.timer span {
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+/* QUESTION */
+.question-number {
+    text-align: center;
+    color: #00f6ff;
+    font-size: .7rem;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.question {
+    text-align: center;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    font-weight: 800;
+    line-height: 1.5;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ANSWERS */
+.answers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.answer-btn {
+    min-height: 65px;
+    border-radius: 13px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.035);
+    color: #dce3ed;
+    cursor: pointer;
+    font-size: .9rem;
+    padding: 12px;
+    transition: .2s;
+}
+
+.answer-btn:hover {
+    border-color: #00f6ff;
+    background: rgba(0,246,255,.07);
+    transform: translateY(-2px);
+}
+
+.answer-btn.correct {
+    border-color: #27e38b;
+    background: rgba(39,227,139,.12);
+}
+
+.answer-btn.wrong {
+    border-color: #ff4d6d;
+    background: rgba(255,77,109,.12);
+}
+
+/* FEEDBACK */
+.feedback {
+    text-align: center;
+    min-height: 25px;
+    margin-top: 18px;
+    font-weight: bold;
+    font-size: .85rem;
+}
+
+/* RESULT */
+.result-screen {
+    display: none;
+    text-align: center;
+}
+
+.result-title {
+    color: #00f6ff;
+    letter-spacing: 4px;
+    font-size: .8rem;
+}
+
+.result-screen h2 {
+    font-size: 3rem;
+    margin: 15px 0;
+}
+
+.final-score {
+    font-size: 4rem;
+    font-weight: 900;
+    background: linear-gradient(90deg,#00f6ff,#9c5cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rank {
+    margin: 15px 0 25px;
+    color: #a8b2c4;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 25px 10px;
+    border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.identity-title {
+    color: #667085;
+    font-size: .65rem;
+    letter-spacing: 4px;
+    font-weight: 800;
+}
+
+.identity-name {
+    margin-top: 8px;
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    background: linear-gradient(
+        90deg,
+        #fff,
+        #00f6ff,
+        #9c5cff,
+        #fff
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.identity-school {
+    margin-top: 8px;
+    color: #7e899c;
+    font-size: .75rem;
+    line-height: 1.7;
+    letter-spacing: 1.5px;
+}
+
+.identity-extra {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.identity-extra span {
+    border: 1px solid rgba(0,246,255,.15);
+    background: rgba(0,246,255,.04);
+    color: #00f6ff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: .6rem;
+    letter-spacing: 1px;
+}
+
+.copyright {
+    margin-top: 18px;
+    color: #3f4858;
+    font-size: .65rem;
+}
+
+/* MOBILE */
+@media(max-width:600px) {
+
+    .container {
+        width: 94%;
+        padding-top: 10px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .top-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .answers {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <div class="logo">IQ</div>
+
+    <h1>LOGIC//20</h1>
+
+    <div class="subtitle">
+        THINK • ANALYZE • SOLVE
+    </div>
+</header>
+
+
+<!-- =========================
+     START SCREEN
+========================= -->
+
+<div class="card start-screen" id="startScreen">
+
+    <div class="badge">
+        20 LEVEL IQ CHALLENGE
+    </div>
+
+    <h2>Can You Solve It?</h2>
+
+    <p class="description">
+        Uji kemampuan logika, pola, analisis, dan pemecahan masalahmu
+        melalui 20 level yang semakin sulit.
+    </p>
+
+    <div class="rules">
+
+        <div class="rule">
+            ❤️ 3 NYAWA
+        </div>
+
+        <div class="rule">
+            ⏱️ 60 DETIK
+        </div>
+
+        <div class="rule">
+            🧠 20 LEVEL
+        </div>
+
+        <div class="rule">
+            ⚡ COMBO
+        </div>
+
+    </div>
+
+    <button class="main-btn" id="startBtn">
+        MULAI GAME
+    </button>
+
+</div>
+
+
+<!-- =========================
+     GAME SCREEN
+========================= -->
+
+<div class="card game-screen" id="gameScreen">
+
+    <div class="top-info">
+
+        <div class="info-box">
+            <div class="info-label">LEVEL</div>
+            <div class="info-value" id="levelText">1 / 20</div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-label">SCORE</div>
+            <div class="info-value" id="scoreText">0</div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-label">NYAWA</div>
+            <div class="info-value" id="livesText">❤️❤️❤️</div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-label">COMBO</div>
+            <div class="info-value" id="comboText">0x</div>
+        </div>
+
+    </div>
+
+
+    <div class="progress-container">
+
+        <div class="progress-info">
+            <span>PROGRESS</span>
+            <span id="progressText">1 / 20</span>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+    </div>
+
+
+    <div class="timer">
+        <span id="timerText">60</span>
+    </div>
+
+
+    <div class="question-number" id="questionNumber">
+        LEVEL 01
+    </div>
+
+    <div class="question" id="question">
+        Pertanyaan
+    </div>
+
+    <div class="answers" id="answers"></div>
+
+    <div class="feedback" id="feedback"></div>
+
+</div>
+
+
+<!-- =========================
+     RESULT SCREEN
+========================= -->
+
+<div class="card result-screen" id="resultScreen">
+
+    <div class="result-title">
+        CHALLENGE COMPLETE
+    </div>
+
+    <h2>HASIL AKHIR</h2>
+
+    <div class="final-score" id="finalScore">
+        0
+    </div>
+
+    <div class="rank" id="rankText">
+        LOGIC NOVICE
+    </div>
+
+    <button class="main-btn" id="restartBtn">
+        MAIN LAGI
+    </button>
+
+</div>
+
+
+<!-- =========================
+     IDENTITY
+========================= -->
+
+<footer>
+
+    <div class="identity-title">
+        CREATED BY
+    </div>
+
+    <div class="identity-name">
+        MUHAMMAD HAYKAL
+    </div>
+
+    <div class="identity-school">
+        SMAN 1 PADANG PANJANG
+        <br>
+        SUMATERA BARAT
+    </div>
+
+    <!--
+        ================================
+        KALAU MAU TAMBAH IDENTITAS,
+        EDIT BAGIAN DI BAWAH INI
+        ================================
+    -->
+
+    <div class="identity-extra">
+
+        <span>CLASS: X</span>
+
+        <span>YEAR: 2026</span>
+
+        <span>PROJECT: IQ//LOGIC</span>
+
+    </div>
+
+    <div class="copyright">
+        IQ//LOGIC © 2026
+    </div>
+
+</footer>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   IQ//LOGIC 20 LEVEL
+   ===================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =========================
+       DATA SOAL
+    ========================= */
+
+    const questions = [
+
+        {
+            question: "2, 4, 6, 8, ?",
+            answers: ["9", "10", "11", "12"],
+            correct: 1
+        },
+
+        {
+            question: "3, 6, 12, 24, ?",
+            answers: ["36", "42", "48", "54"],
+            correct: 2
+        },
+
+        {
+            question: "Semua burung memiliki sayap. Elang adalah burung. Kesimpulannya?",
+            answers: [
+                "Elang memiliki sayap",
+                "Elang tidak memiliki sayap",
+                "Semua sayap adalah elang",
+                "Tidak dapat diketahui"
+            ],
+            correct: 0
+        },
+
+        {
+            question: "Manakah yang berbeda?",
+            answers: [
+                "Segitiga",
+                "Persegi",
+                "Lingkaran",
+                "Kubus"
+            ],
+            correct: 3
+        },
+
+        {
+            question: "Tangan : Sarung tangan = Kaki : ?",
+            answers: [
+                "Topi",
+                "Sepatu",
+                "Kacamata",
+                "Baju"
+            ],
+            correct: 1
+        },
+
+        {
+            question: "A, C, E, G, ?",
+            answers: [
+                "H",
+                "I",
+                "J",
+                "K"
+            ],
+            correct: 1
+        },
+
+        {
+            question: "Berapa sudut antara jarum jam pada pukul 03:00?",
+            answers: [
+                "45°",
+                "60°",
+                "90°",
+                "120°"
+            ],
+            correct: 2
+        },
+
+        {
+            question: "1, 1, 2, 3, 5, 8, ?",
+            answers: [
+                "11",
+                "12",
+                "13",
+                "15"
+            ],
+            correct: 2
+        },
+
+        {
+            question: "Ayah memiliki 4 anak: Andi, Budi, Caca, dan...?",
+            answers: [
+                "Dodi",
+                "Dina",
+                "Kamu",
+                "Eka"
+            ],
+            correct: 2
+        },
+
+        {
+            question: "5 mesin membuat 5 barang dalam 5 menit. 100 mesin membuat 100 barang dalam berapa menit?",
+            answers: [
+                "5 menit",
+                "20 menit",
+                "50 menit",
+                "100 menit"
+            ],
+            correct: 0
+        },
+
+        {
+            question: "2, 6, 12, 20, 30, ?",
+            answers: [
+                "36",
+                "40",
+                "42",
+                "44"
+            ],
+            correct: 2
+        },
+
+        {
+            question: "Jika kemarin adalah Senin, maka lusa adalah hari...",
+            answers: [
+                "Selasa",
+                "Rabu",
+                "Kamis",
+                "Jumat"
+            ],
+            correct: 2
+        },
+
+        {
+            question: "1, 4, 9, 16, 25, ?",
+            answers: [
+                "30",
+                "32",
+                "36",
+                "49"
+            ],
+            correct: 2
+        },
+
+        {
+            question: "Budi lebih tinggi dari Andi. Andi lebih tinggi dari Caca. Siapa yang paling pendek?",
+            answers: [
+                "Budi",
+                "Andi",
+                "Caca",
+                "Tidak diketahui"
+            ],
+            correct: 2
+        },
+
+        {
+            question: "Jika 2 → 6, 3 → 12, 4 → 20, maka 5 → ?",
+            answers: [
+                "25",
+                "30",
+                "35",
+                "40"
+            ],
+            correct: 1
+        },
+
+        {
+            question: "Z, X, U, Q, L, ?",
+            answers: [
+                "H",
+                "G",
+                "F",
+                "E"
+            ],
+            correct: 2
+        },
+
+        {
+            question: "Jika semua kucing adalah hewan dan beberapa hewan bisa berenang, apakah semua kucing pasti bisa berenang?",
+            answers: [
+                "Ya, pasti",
+                "Tidak dapat disimpulkan",
+                "Semua kucing berenang",
+                "Tidak ada kucing"
+            ],
+            correct: 1
+        },
+
+        {
+            question: "3, 5, 9, 17, 33, ?",
+            answers: [
+                "49",
+                "57",
+                "65",
+                "67"
+            ],
+            correct: 2
+        },
+
+        {
+            question: "A lebih cepat dari B. B lebih cepat dari C. D lebih cepat dari A. Siapa yang paling cepat?",
+            answers: [
+                "A",
+                "B",
+                "C",
+                "D"
+            ],
+            correct: 3
+        },
+
+        {
+            question: "Sebuah angka dikali 2 lalu ditambah 6 menghasilkan 20. Berapakah angka tersebut?",
+            answers: [
+                "5",
+                "6",
+                "7",
+                "8"
+            ],
+            correct: 1
+        }
+
+    ];
+
+
+    /* =========================
+       VARIABLE GAME
+    ========================= */
+
+    let currentLevel = 0;
+    let score = 0;
+    let lives = 3;
+    let combo = 0;
+    let timeLeft = 60;
+    let timer = null;
+    let answered = false;
+
+
+    /* =========================
+       ELEMENT
+    ========================= */
+
+    const startScreen = document.getElementById("startScreen");
+    const gameScreen = document.getElementById("gameScreen");
+    const resultScreen = document.getElementById("resultScreen");
+
+    const startBtn = document.getElementById("startBtn");
+    const restartBtn = document.getElementById("restartBtn");
+
+    const levelText = document.getElementById("levelText");
+    const scoreText = document.getElementById("scoreText");
+    const livesText = document.getElementById("livesText");
+    const comboText = document.getElementById("comboText");
+
+    const progressText = document.getElementById("progressText");
+    const progressBar = document.getElementById("progressBar");
+
+    const timerText = document.getElementById("timerText");
+
+    const questionNumber = document.getElementById("questionNumber");
+    const questionElement = document.getElementById("question");
+    const answersElement = document.getElementById("answers");
+
+    const feedback = document.getElementById("feedback");
+
+    const finalScore = document.getElementById("finalScore");
+    const rankText = document.getElementById("rankText");
+
+
+    /* =========================
+       START GAME
+    ========================= */
+
+    startBtn.addEventListener("click", startGame);
+
+    function startGame() {
+
+        currentLevel = 0;
+        score = 0;
+        lives = 3;
+        combo = 0;
+
+        startScreen.style.display = "none";
+        resultScreen.style.display = "none";
+        gameScreen.style.display = "block";
+
+        loadQuestion();
+    }
+
+
+    /* =========================
+       LOAD QUESTION
+    ========================= */
+
+    function loadQuestion() {
+
+        clearInterval(timer);
+
+        answered = false;
+        timeLeft = 60;
+
+        const q = questions[currentLevel];
+
+        levelText.textContent =
+            (currentLevel + 1) + " / " + questions.length;
+
+        progressText.textContent =
+            (currentLevel + 1) + " / " + questions.length;
+
+        progressBar.style.width =
+            ((currentLevel + 1) / questions.length * 100) + "%";
+
+        questionNumber.textContent =
+            "LEVEL " +
+            String(currentLevel + 1).padStart(2, "0");
+
+        questionElement.textContent = q.question;
+
+        feedback.textContent = "";
+
+        timerText.textContent = timeLeft;
+
+        answersElement.innerHTML = "";
+
+
+        q.answers.forEach(function(answer, index) {
+
+            const button = document.createElement("button");
+
+            button.className = "answer-btn";
+
+            button.textContent = answer;
+
+            button.addEventListener("click", function() {
+
+                checkAnswer(index, button);
+
+            });
+
+            answersElement.appendChild(button);
+
+        });
+
+
+        updateStats();
+
+        startTimer();
+    }
+
+
+    /* =========================
+       TIMER
+    ========================= */
+
+    function startTimer() {
+
+        timer = setInterval(function() {
+
+            timeLeft--;
+
+            timerText.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+
+                clearInterval(timer);
+
+                timeOut();
+
+            }
+
+        }, 1000);
+
+    }
+
+
+    /* =========================
+       CHECK ANSWER
+    ========================= */
+
+    function checkAnswer(selected, button) {
+
+        if (answered) return;
+
+        answered = true;
+
+        clearInterval(timer);
+
+        const correct =
+            questions[currentLevel].correct;
+
+        const buttons =
+            document.querySelectorAll(".answer-btn");
+
+
+        if (selected === correct) {
+
+            button.classList.add("correct");
+
+            combo++;
+
+            let points = 100 + (combo * 25);
+
+            score += points;
+
+            feedback.textContent =
+                "✓ BENAR! +" + points + " POINT";
+
+            feedback.style.color = "#27e38b";
+
+        } else {
+
+            button.classList.add("wrong");
+
+            buttons[correct].classList.add("correct");
+
+            lives--;
+
+            combo = 0;
+
+            feedback.textContent =
+                "✕ SALAH! Jawaban yang benar: " +
+                questions[currentLevel].answers[correct];
+
+            feedback.style.color = "#ff4d6d";
+
+        }
+
+
+        updateStats();
+
+
+        setTimeout(function() {
+
+            if (lives <= 0) {
+
+                endGame();
+
+            } else {
+
+                nextLevel();
+
+            }
+
+        }, 1200);
+
+    }
+
+
+    /* =========================
+       TIME OUT
+    ========================= */
+
+    function timeOut() {
+
+        if (answered) return;
+
+        answered = true;
+
+        lives--;
+
+        combo = 0;
+
+        feedback.textContent =
+            "⏱ WAKTU HABIS!";
+
+        feedback.style.color = "#ff4d6d";
+
+        const correct =
+            questions[currentLevel].correct;
+
+        const buttons =
+            document.querySelectorAll(".answer-btn");
+
+        buttons[correct].classList.add("correct");
+
+        updateStats();
+
+
+        setTimeout(function() {
+
+            if (lives <= 0) {
+
+                endGame();
+
+            } else {
+
+                nextLevel();
+
+            }
+
+        }, 1200);
+
+    }
+
+
+    /* =========================
+       NEXT LEVEL
+    ========================= */
+
+    function nextLevel() {
+
+        currentLevel++;
+
+        if (currentLevel >= questions.length) {
+
+            endGame();
+
+        } else {
+
+            loadQuestion();
+
+        }
+
+    }
+
+
+    /* =========================
+       UPDATE STATS
+    ========================= */
+
+    function updateStats() {
+
+        scoreText.textContent = score;
+
+        comboText.textContent = combo + "x";
+
+        livesText.textContent =
+            "❤️".repeat(Math.max(0, lives));
+
+    }
+
+
+    /* =========================
+       END GAME
+    ========================= */
+
+    function endGame() {
+
+        clearInterval(timer);
+
+        gameScreen.style.display = "none";
+
+        resultScreen.style.display = "block";
+
+        finalScore.textContent = score;
+
+
+        let rank = "";
+
+        if (score >= 3000) {
+
+            rank = "👑 LOGIC MASTER";
+
+        } else if (score >= 2200) {
+
+            rank = "🔥 GENIUS THINKER";
+
+        } else if (score >= 1500) {
+
+            rank = "⚡ LOGIC EXPERT";
+
+        } else if (score >= 800) {
+
+            rank = "🧠 SMART THINKER";
+
+        } else {
+
+            rank = "🌱 LOGIC BEGINNER";
+
+        }
+
+
+        rankText.textContent = rank;
+
+
+        /* BEST SCORE */
+
+        const best =
+            Number(localStorage.getItem("logicBestScore") || 0);
+
+        if (score > best) {
+
+            localStorage.setItem(
+                "logicBestScore",
+                score
+            );
+
+        }
+
+    }
+
+
+    /* =========================
+       RESTART
+    ========================= */
+
+    restartBtn.addEventListener("click", function() {
+
+        resultScreen.style.display = "none";
+
+        startScreen.style.display = "block";
+
+    });
+
+
+});
+</script>
+
+</body>
+</html>>
+
+
+<!-- =====================================================
+     GAME
+===================================================== -->
+
+<section
+    class="card"
+    id="gameScreen"
+    style="display:none;">
+
+
+    <div class="game-top">
+
+        <div class="level-text">
+            LEVEL <span id="level">1</span>/10
+        </div>
+
+        <div class="score">
+            ⭐ <span id="score">0</span>
+        </div>
+
+    </div>
+
+
+    <div class="progress-container">
+
+        <div
+            class="progress"
+            id="progress">
+        </div>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <small>NYAWA</small>
+
+            <strong id="lives">
+                ❤️❤️❤️
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <small>COMBO</small>
+
+            <strong id="combo">
+                x0
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <small>BEST</small>
+
+            <strong id="best">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="timer-wrapper">
+
+        <div
+            class="timer-circle"
+            id="timer">
+
+            30
+
+        </div>
+
+    </div>
+
+
+    <div class="question-label">
+        LOGIC TEST
+    </div>
+
+
+    <div
+        class="question"
+        id="question">
+
+        Memuat soal...
+
+    </div>
+
+
+    <div
+        class="answers"
+        id="answers">
+    </div>
+
+
+    <div
+        class="result"
+        id="result">
+    </div>
+
+
+    <div
+        class="combo"
+        id="comboText">
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     FINAL SCREEN
+===================================================== -->
+
+<section
+    class="card final-screen"
+    id="finalScreen"
+    style="display:none;">
+
+    <div class="trophy">
+        🏆
+    </div>
+
+    <h2>
+        CHALLENGE COMPLETE
+    </h2>
+
+    <div
+        class="final-score"
+        id="finalScore">
+        0
+    </div>
+
+    <div
+        class="rank"
+        id="rank">
+        LOGIC PLAYER
+    </div>
+
+    <p
+        class="final-message"
+        id="finalMessage">
+        Kamu berhasil menyelesaikan challenge!
+    </p>
+
+    <button
+        class="restart-btn"
+        onclick="restartGame()">
+
+        🔄 MAIN LAGI
+
+    </button>
+
+</section>
+
+
+</main>
+
+    </div>
+
+    <div class="copyright">
+        IQ//LOGIC © 2026
+    </div>
+
+</footer>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const questions = [
+
+        {
+            question: "Lanjutkan pola:<br><br>2, 4, 6, 8, ?",
+            answers: ["9", "10", "11", "12"],
+            correct: 1
+        },
+
+        {
+            question: "Jika semua KUCING adalah HEWAN, dan sebagian HEWAN bisa berenang. Apakah semua KUCING pasti bisa berenang?",
+            answers: [
+                "Ya, pasti",
+                "Tidak dapat disimpulkan",
+                "Hanya kucing besar",
+                "Semua kucing bisa"
+            ],
+            correct: 1
+        },
+
+        {
+            question: "Lanjutkan pola:<br><br>3, 6, 12, 24, ?",
+            answers: ["36", "42", "48", "52"],
+            correct: 2
+        },
+
+        {
+            question: "Ada 5 mesin yang membuat 5 barang dalam 5 menit. Berapa menit yang dibutuhkan 100 mesin untuk membuat 100 barang?",
+            answers: [
+                "5 menit",
+                "20 menit",
+                "50 menit",
+                "100 menit"
+            ],
+            correct: 0
+        },
+
+        {
+            question: "Mana yang berbeda dari kelompok berikut?",
+            answers: [
+                "🔺 Segitiga",
+                "⬛ Persegi",
+                "⚪ Lingkaran",
+                "📐 Kubus"
+            ],
+            correct: 3
+        },
+
+        {
+            question: "Jika A = 1, B = 2, C = 3, maka B + D + F = ?",
+            answers: ["10", "12", "14", "16"],
+            correct: 1
+        },
+
+        {
+            question: "Sebuah jam menunjukkan pukul 03:00. Berapa derajat sudut antara jarum jam dan jarum menit?",
+            answers: ["45°", "60°", "90°", "120°"],
+            correct: 2
+        },
+
+        {
+            question: "Lanjutkan pola:<br><br>1, 1, 2, 3, 5, 8, ?",
+            answers: ["11", "12", "13", "15"],
+            correct: 2
+        },
+
+        {
+            question: "Ayah memiliki 4 anak. Tiga anak bernama Budi, Andi, dan Rudi. Siapa nama anak keempat?",
+            answers: [
+                "Doni",
+                "Ayah",
+                "Tidak diketahui",
+                "Rudi"
+            ],
+            correct: 1
+        },
+
+        {
+            question: "Ada 3 kotak: MERAH, BIRU, dan HIJAU. Hanya satu berisi hadiah.<br><br>MERAH berkata: 'Hadiah ada di BIRU.'<br>BIRU berkata: 'Hadiah bukan di sini.'<br>HIJAU berkata: 'Hadiah ada di MERAH.'<br><br>Hanya SATU pernyataan yang benar. Di mana hadiahnya?",
+            answers: [
+                "MERAH",
+                "BIRU",
+                "HIJAU",
+                "Tidak mungkin diketahui"
+            ],
+            correct: 1
+        }
+
+    ];
+
+
+    let currentLevel = 0;
+    let score = 0;
+    let lives = 3;
+    let combo = 0;
+    let timer;
+    let timeLeft;
+
+
+    const startScreen = document.getElementById("startScreen");
+    const gameScreen = document.getElementById("gameScreen");
+    const finalScreen = document.getElementById("finalScreen");
+
+    const questionEl = document.getElementById("question");
+    const answersEl = document.getElementById("answers");
+
+    const resultEl = document.getElementById("result");
+    const levelEl = document.getElementById("level");
+    const scoreEl = document.getElementById("score");
+    const livesEl = document.getElementById("lives");
+    const comboEl = document.getElementById("combo");
+    const progressEl = document.getElementById("progress");
+    const timerEl = document.getElementById("timer");
+    const comboTextEl = document.getElementById("comboText");
+
+    const finalScore = document.getElementById("finalScore");
+    const rank = document.getElementById("rank");
+    const finalMessage = document.getElementById("finalMessage");
+
+
+    /* =========================================
+       TOMBOL MULAI
+    ========================================= */
+
+    const startButton =
+        document.querySelector(".start-btn");
+
+    startButton.addEventListener("click", startGame);
+
+
+    /* =========================================
+       TOMBOL MAIN LAGI
+    ========================================= */
+
+    const restartButton =
+        document.querySelector(".restart-btn");
+
+    restartButton.addEventListener("click", restartGame);
+
+
+    /* =========================================
+       START GAME
+    ========================================= */
+
+    function startGame() {
+
+        currentLevel = 0;
+        score = 0;
+        lives = 3;
+        combo = 0;
+
+        startScreen.style.display = "none";
+        finalScreen.style.display = "none";
+        gameScreen.style.display = "block";
+
+        updateStats();
+
+        loadQuestion();
+    }
+
+
+    /* =========================================
+       LOAD SOAL
+    ========================================= */
+
+    function loadQuestion() {
+
+        clearInterval(timer);
+
+        const data =
+            questions[currentLevel];
+
+        levelEl.textContent =
+            currentLevel + 1;
+
+        progressEl.style.width =
+            ((currentLevel + 1) / 10 * 100) + "%";
+
+        questionEl.innerHTML =
+            data.question;
+
+        answersEl.innerHTML = "";
+
+        resultEl.textContent = "";
+
+        resultEl.className = "result";
+
+        comboTextEl.textContent = "";
+
+
+        data.answers.forEach(function(answer, index) {
+
+            const button =
+                document.createElement("button");
+
+            button.className = "answer";
+
+            button.textContent = answer;
+
+            button.addEventListener(
+                "click",
+                function() {
+                    checkAnswer(index, button);
+                }
+            );
+
+            answersEl.appendChild(button);
+
+        });
+
+
+        startTimer();
+    }
+
+
+    /* =========================================
+       TIMER
+    ========================================= */
+
+    function startTimer() {
+
+        timeLeft = 60;
+
+        timerEl.textContent =
+            timeLeft;
+
+        timerEl.style.color =
+            "#00f6ff";
+
+
+        timer = setInterval(function() {
+
+            timeLeft--;
+
+            timerEl.textContent =
+                timeLeft;
+
+
+            if (timeLeft <= 5) {
+
+                timerEl.style.color =
+                    "#ff426d";
+
+            }
+
+
+            if (timeLeft <= 0) {
+
+                clearInterval(timer);
+
+                timeOut();
+            }
+
+        }, 1000);
+    }
+
+
+    /* =========================================
+       JAWABAN
+    ========================================= */
+
+    function checkAnswer(index, button) {
+
+        clearInterval(timer);
+
+        const data =
+            questions[currentLevel];
+
+        const buttons =
+            document.querySelectorAll(".answer");
+
+
+        buttons.forEach(function(btn) {
+            btn.classList.add("disabled");
+        });
+
+
+        if (index === data.correct) {
+
+            button.classList.add("correct");
+
+            combo++;
+
+            const points =
+                100 +
+                (timeLeft * 3) +
+                (combo * 15);
+
+            score += points;
+
+            resultEl.textContent =
+                "✅ BENAR! +" + points + " POINT";
+
+            resultEl.className =
+                "result success";
+
+            comboTextEl.textContent =
+                "🔥 COMBO x" + combo;
+
+            updateStats();
+
+
+            setTimeout(function() {
+                nextLevel();
+            }, 1000);
+
+
+        } else {
+
+            button.classList.add("wrong");
+
+            buttons[data.correct]
+                .classList.add("correct");
+
+            lives--;
+
+            combo = 0;
+
+            resultEl.textContent =
+                "❌ SALAH!";
+
+            resultEl.className =
+                "result error";
+
+            comboTextEl.textContent =
+                "COMBO TERPUTUS";
+
+            updateStats();
+
+
+            setTimeout(function() {
+
+                if (lives <= 0) {
+                    endGame(false);
+                } else {
+                    nextLevel();
+                }
+
+            }, 1200);
+        }
+    }
+
+
+    /* =========================================
+       WAKTU HABIS
+    ========================================= */
+
+    function timeOut() {
+
+        const data =
+            questions[currentLevel];
+
+        const buttons =
+            document.querySelectorAll(".answer");
+
+
+        buttons.forEach(function(btn) {
+            btn.classList.add("disabled");
+        });
+
+
+        buttons[data.correct]
+            .classList.add("correct");
+
+
+        lives--;
+
+        combo = 0;
+
+
+        resultEl.textContent =
+            "⏰ WAKTU HABIS!";
+
+        resultEl.className =
+            "result error";
+
+
+        comboTextEl.textContent =
+            "COMBO TERPUTUS";
+
+
+        updateStats();
+
+
+        setTimeout(function() {
+
+            if (lives <= 0) {
+                endGame(false);
+            } else {
+                nextLevel();
+            }
+
+        }, 1200);
+    }
+
+
+    /* =========================================
+       LEVEL BERIKUTNYA
+    ========================================= */
+
+    function nextLevel() {
+
+        currentLevel++;
+
+
+        if (currentLevel >= questions.length) {
+
+            endGame(true);
+
+        } else {
+
+            loadQuestion();
+
+        }
+    }
+
+
+    /* =========================================
+       UPDATE STATUS
+    ========================================= */
+
+    function updateStats() {
+
+        scoreEl.textContent =
+            score;
+
+        comboEl.textContent =
+            "x" + combo;
+
+
+        let hearts = "";
+
+        for (let i = 0; i < 3; i++) {
+
+            if (i < lives) {
+                hearts += "❤️";
+            } else {
+                hearts += "🖤";
+            }
+
+        }
+
+        livesEl.textContent =
+            hearts;
+    }
+
+
+    /* =========================================
+       SELESAI
+    ========================================= */
+
+    function endGame(completed) {
+
+        clearInterval(timer);
+
+        gameScreen.style.display =
+            "none";
+
+        finalScreen.style.display =
+            "block";
+
+
+        finalScore.textContent =
+            score;
+
+
+        if (completed) {
+
+            if (score >= 1500) {
+
+                rank.textContent =
+                    "🧠 LOGIC MASTER";
+
+                finalMessage.textContent =
+                    "Luar biasa! Kamu berhasil menaklukkan seluruh 10 level.";
+
+            } else if (score >= 1100) {
+
+                rank.textContent =
+                    "🔥 LOGIC EXPERT";
+
+                finalMessage.textContent =
+                    "Keren! Kemampuan logikamu sangat baik.";
+
+            } else {
+
+                rank.textContent =
+                    "⚡ LOGIC PLAYER";
+
+                finalMessage.textContent =
+                    "Kamu berhasil menyelesaikan seluruh level. Terus latih logikamu!";
+
+            }
+
+        } else {
+
+            rank.textContent =
+                "💡 KEEP TRAINING";
+
+            finalMessage.textContent =
+                "Nyawamu habis. Coba lagi dan kalahkan skor sebelumnya!";
+
+        }
+    }
+
+
+    /* =========================================
+       MAIN LAGI
+    ========================================= */
+
+    function restartGame() {
+
+        finalScreen.style.display =
+            "none";
+
+        startScreen.style.display =
+            "block";
+    }
+
+});
+
+</script>
